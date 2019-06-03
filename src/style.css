@@ -5,7 +5,7 @@
     font-style: normal;
 }
 .hello {
-    color: red;
+    color: wheat;
     font-family: MyFont;
-    background: url('./webpack.png');
+    background: gray;
 }
