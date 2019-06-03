@@ -1,11 +1,10 @@
-@font-face {
-    font-family: MyFont;
-    src:  url('./font.ttf');
-    font-weight: 600;
-    font-style: normal;
+body {
+    padding: 0%;
+    margin: 0%;
+    border: 0%;
 }
 .hello {
+    padding: 20px;
     color: wheat;
-    font-family: MyFont;
     background: gray;
 }

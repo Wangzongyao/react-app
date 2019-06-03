@@ -24,6 +24,7 @@ module.exports = {
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin()
 	],
+	mode: "production",
 	module: {
 		rules: [
 			{
