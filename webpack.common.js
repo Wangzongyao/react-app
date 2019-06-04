@@ -1,22 +1,38 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/index.js'
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'webpack-demo'
-        })
-    ],
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    module: {
+	entry: {
+		index: './src/index.js',
+		vendor: [
+			'lodash'
+		]
+	},
+	plugins: [
+		new CleanWebpackPlugin(),
+		new HtmlWebpackPlugin({
+			title: 'webpack-demo'
+		}),
+	],
+	output: {
+		filename: '[name].[chunkhash].js',
+		chunkFilename: '[name].bundle.js',
+		path: path.resolve(__dirname, 'dist')
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					name: 'vendor',
+					chunks: 'initial',
+					minChunks: 2
+				}
+			}
+		}
+	},
+	module: {
 		rules: [
 			{
 				test: /\.css$/,
