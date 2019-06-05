@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import Other from './other';
 
 function component() {
 	var element = document.createElement('div');
