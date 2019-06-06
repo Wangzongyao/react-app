@@ -1,5 +1,5 @@
 # 忽略dist打包文件
-# dist
+dist
 # 忽略依赖项文件
 node_modules
 # 忽略Mac隐藏文件
