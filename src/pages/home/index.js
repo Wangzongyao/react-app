@@ -5,7 +5,7 @@ class Home extends React.Component {
         super();
         this.state = {}
     }
-    
+
     render() {
         return (
             <div>
@@ -14,3 +14,5 @@ class Home extends React.Component {
         );
     }
 }
+
+export default Home;

@@ -1,10 +1,7 @@
-import _ from 'lodash';
+import ReactDOM from 'react-dom';
+import WebpackDemo from './pages/home/index.js';
 
-const test = () => {
-	return ['w', 'z', 'y'];
-}
-
-console.log(test())
+ReactDOM.render(<WebpackDemo />, document.getElementById('app'));
 
 // if (module.hot) {
 // 	module.hot.accept('./math.js', function () {
