@@ -50,6 +50,12 @@ module.exports = {
 				use: [
 					'file-loader'
 				]
+			}, {
+				test: /\.js$/,
+				include: [path.join(__dirname, 'src')],
+				use: [
+					'babel-loader',
+				],
 			}
 		]
 	}
