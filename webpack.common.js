@@ -40,6 +40,13 @@ module.exports = {
 					'css-loader'
 				]
 			}, {
+				test: /\.less$/,
+				use: [
+					'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+					'less-loader'
+				],
+				include: [path.join(__dirname, 'src')]
+			}, {
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
 					'file-loader'
