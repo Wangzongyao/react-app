@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-		index: './src/index.js',
+		index: path.resolve(__dirname, 'src/index.js'),
 		vendor: [
 			'lodash'
 		]
@@ -42,7 +42,8 @@ module.exports = {
 			}, {
 				test: /\.less$/,
 				use: [
-					'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+					'style-loader',
+					'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
 					'less-loader'
 				],
 				include: [path.join(__dirname, 'src')]
