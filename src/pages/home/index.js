@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'antd'
+
 import styles from './index.less'
 
 class Home extends React.Component {
@@ -10,7 +12,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className={styles['home-wrap']}>
-                Hello World
+                <Button>Hello World</Button>
         </div>
         );
     }
