@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd'
+import { NavLink } from 'react-router-dom';
 
 import fetchJson from '../../commons/fetch/index.js'
 import styles from './index.less'
@@ -23,7 +24,9 @@ class Home extends React.Component {
     render() {
         return (
             <div className={styles['home-wrap']}>
-                <Button>Hello {this.state.name}</Button>
+                <NavLink to="/login" exact={true}>
+                    <Button onClick={this.gotoLogin}>Hello {this.state.name}</Button>
+                </NavLink>
             </div>
         );
     }
