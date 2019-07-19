@@ -15,6 +15,7 @@ module.exports = merge(common, {
             path.join(__dirname, "src"),
             path.join(__dirname, "mock")
         ],
-        hot: true
+        hot: true,
+        historyApiFallback: true
     }
 });
