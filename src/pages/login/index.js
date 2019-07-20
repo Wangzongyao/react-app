@@ -24,9 +24,9 @@ class Login extends React.PureComponent {
     // }
     render() {
         const { name } = this.props
-        console.log((()=>this.renderList1(0)))
-        console.log(this.renderList2.bind(this, 1))
-        console.log(this.renderList3(2))
+        // console.log((()=>this.renderList1(0)))
+        // console.log(this.renderList2.bind(this, 1))
+        // console.log(this.renderList3(2))
         return (
             <div className={styles['login_wrap']}>
                 {name}
