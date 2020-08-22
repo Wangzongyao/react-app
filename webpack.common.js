@@ -1,26 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-		index: './src/index.js',
+		index: path.resolve(__dirname, 'src/index.js'),
 		vendor: [
 			'lodash'
 		]
 	},
 	plugins: [
-		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'webpack-demo'
+			title: 'webpack-demo',
+			template: path.resolve(__dirname, 'src/index.html')
 		}),
 	],
 	output: {
-		filename: '[name].[chunkhash].js',
+		filename: '[name].[hash].js',
 		chunkFilename: '[name].[chunkhash].js',
 		path: path.resolve(__dirname, 'dist')
 	},
+	resolve: { alias: { LocalCommons: path.resolve(__dirname, 'src/commons/') }, },
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
@@ -41,6 +41,14 @@ module.exports = {
 					'css-loader'
 				]
 			}, {
+				test: /\.less$/,
+				use: [
+					'style-loader',
+					'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
+					'less-loader'
+				],
+				include: [path.join(__dirname, 'src')]
+			}, {
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
 					'file-loader'
@@ -50,6 +58,12 @@ module.exports = {
 				use: [
 					'file-loader'
 				]
+			}, {
+				test: /\.js$/,
+				include: [path.join(__dirname, 'src')],
+				use: [
+					'babel-loader',
+				],
 			}
 		]
 	}

@@ -11,7 +11,11 @@ module.exports = merge(common, {
 		new webpack.HotModuleReplacementPlugin()
 	],
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
-		hot: true
+        contentBase: [
+            path.join(__dirname, "src"),
+            path.join(__dirname, "mock")
+        ],
+        hot: true,
+        historyApiFallback: true
     }
 });

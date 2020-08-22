@@ -1,30 +1,18 @@
-import _ from 'lodash';
-import Other from './other';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
 
-function component() {
-	var element = document.createElement('div');
-	var button = document.createElement('button');
-	var br = document.createElement('br');
+import reducers from './reducers';
+import WebpackDemo from './pages/index';
 
-	button.innerHTML = 'Click me and look at the console!';
-	element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-	element.appendChild(br);
-	element.appendChild(button);
+const store = createStore(combineReducers(reducers));
 
-	// Note that because a network request is involved, some indication
-	// of loading would need to be shown in a production-level site/app.
-	button.onclick = e => import(/* webpackChunkName: "other" */ './other').then(module => {
-		var print = module.default;
-
-		print();
-	});
-	return element;
-}
-
-document.body.appendChild(component());
-
-// if (module.hot) {
-// 	module.hot.accept('./math.js', function () {
-// 		component();
-// 	})
-// }
+ReactDOM.render(
+    // 需要让容器组件WebpackDemo拿到state对象
+    <Provider store={store}>
+        <WebpackDemo />
+    </Provider>
+    , 
+    document.getElementById('app')
+);
