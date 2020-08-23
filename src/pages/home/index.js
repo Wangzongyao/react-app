@@ -9,7 +9,8 @@ import styles from './index.less'
 const Home = memo((props) => {
     const { homeList, featchHomeList } = props
 
-    useEffect(featchHomeList, [])
+    // 第一个参数不能使用异步函数
+    useEffect(() => { featchHomeList() }, [])
 
     return (
         <div className={styles['home-wrap']}>

@@ -9,7 +9,8 @@ module.exports = {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "import/no-named-as-default": ["off"],
         "import/no-named-as-default-member": ["off"],
-        "import/no-unresolved": [2, { ignore: ['@commons'] }]
+        "import/no-unresolved": [2, { ignore: ['@commons'] }],
+        "max-len": ["error", { "code": 150 }]
     },
     "globals": {
         "localStorage": true,
