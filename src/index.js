@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 
-import ErrorBoundary from './commons/components/errorBoundary'
+import ErrorBoundary from '@commons/components/errorBoundary'
 import reducers from './reducers'
 import sagas from './sagas'
 import Pages from './pages/index'
