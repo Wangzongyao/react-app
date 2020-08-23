@@ -20,7 +20,7 @@ module.exports = {
         chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
     },
-    resolve: { alias: { LocalCommons: path.resolve(__dirname, 'src/commons/') } },
+    resolve: { alias: { '@commons': path.resolve(__dirname, 'src/commons/') } },
     optimization: {
         splitChunks: {
             cacheGroups: {

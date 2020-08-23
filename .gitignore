@@ -4,3 +4,5 @@ dist
 node_modules
 # 忽略Mac隐藏文件
 .DS_Store
+# 忽略jsconfig配置
+jsconfig.json

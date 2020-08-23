@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects'
 
-import fetchJson from 'LocalCommons/fetch'
-import URLS from 'LocalCommons/URLS'
+import fetchJson from '@commons/fetch'
+import URLS from '@commons/URLS'
 import CONSTANTS from './constants'
 
 export function* featchHomeList(action) {
