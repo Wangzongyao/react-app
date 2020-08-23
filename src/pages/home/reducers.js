@@ -12,5 +12,9 @@ export default handleActions({
         message.success('success!')
         return ({ ...perState, homeList: payload })
     },
-    [CONSTANTS.GET_HOME_DATA_FAILED]: perState => perState,
+    [CONSTANTS.GET_HOME_DATA_FAILED]: (perState) => {
+        message.error('error!')
+        return perState
+    },
+
 }, initState)

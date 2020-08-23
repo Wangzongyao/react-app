@@ -7,7 +7,6 @@ import CONSTANTS from './constants'
 export function* featchHomeList(action) {
     const { params } = action
     const payload = yield call(fetchJson, URLS.GET_HOME_DATA, params)
-    console.log(payload)
     yield put({ type: CONSTANTS.GET_HOME_DATA_SUCCESSED, payload })
 }
 
