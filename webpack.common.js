@@ -1,5 +1,5 @@
 const path = require('path')
-const webpack = require('webpack')
+// eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -19,6 +19,7 @@ module.exports = {
         filename: '[name].[hash].js',
         chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
     resolve: { alias: { '@commons': path.resolve(__dirname, 'src/commons/') } },
     optimization: {
