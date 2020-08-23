@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class ErrorBoundary extends Component {
     constructor(props) {
@@ -6,7 +7,7 @@ class ErrorBoundary extends Component {
         this.state = { hasError: false }
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError() {
         // 更新 state 使下一次渲染能够显示降级后的 UI
         return { hasError: true }
     }
@@ -26,6 +27,10 @@ class ErrorBoundary extends Component {
 
         return children
     }
+}
+
+ErrorBoundary.propTypes = {
+    children: PropTypes.node.isRequired,
 }
 
 export default ErrorBoundary
