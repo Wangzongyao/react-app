@@ -17,5 +17,7 @@ module.exports = {
         "window": true,
         "document": true,
         "fetch": true
-    }
+    },
+    // https://www.npmjs.com/package/@babel/eslint-parser
+    "parser": "@babel/eslint-parser",
 }
