@@ -1,8 +1,8 @@
 import React , { Suspense, lazy } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-const Home = React.lazy(() => import('./home/index'));
-const Login = React.lazy(() => import('./login/index'));
+const Home = lazy(() => import('./home/connect'));
+const Login = lazy(() => import('./login/index'));
 
 class Pages extends React.Component {
     constructor() {

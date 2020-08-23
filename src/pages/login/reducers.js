@@ -8,12 +8,12 @@ const defaultState = {
 }
 const todos = (state = defaultState, action) => {
     switch (action.type) {
-        case GET_HOME_DATA_SUCCESSED:
-            return {...state, id: 1}
-        case GET_HOME_DATA_FAILED:
-            return state
-        default:
-            return state
+    case GET_HOME_DATA_SUCCESSED:
+        return { ...state, id: 1 }
+    case GET_HOME_DATA_FAILED:
+        return state
+    default:
+        return state
     }
 }
 

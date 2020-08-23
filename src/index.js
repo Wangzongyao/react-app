@@ -1,18 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import createSagaMiddleware from 'redux-saga'
 
-import reducers from './reducers';
-import WebpackDemo from './pages/index';
+import ErrorBoundary from './commons/components/errorBoundary'
+import reducers from './reducers'
+import sagas from './sagas'
+import Pages from './pages/index'
 
-const store = createStore(combineReducers(reducers));
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+    combineReducers(reducers),
+    applyMiddleware(sagaMiddleware),
+)
+sagaMiddleware.run(sagas)
 
 ReactDOM.render(
-    // 需要让容器组件WebpackDemo拿到state对象
-    <Provider store={store}>
-        <WebpackDemo />
-    </Provider>
-    , 
-    document.getElementById('app')
-);
+    <ErrorBoundary>
+        <Provider store={store}>
+            <Pages />
+        </Provider>
+    </ErrorBoundary>,
+    document.getElementById('app'),
+)

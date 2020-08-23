@@ -1,20 +1,16 @@
-import {
-    GET_HOME_DATA_SUCCESSED,
-    GET_HOME_DATA_FAILED,
-} from './constants'
+import { handleActions } from 'redux-actions'
 
-const defaultState = {
-    id: 0,
-}
-const todos = (state = defaultState, action) => {
-    switch (action.type) {
-        case GET_HOME_DATA_SUCCESSED:
-            return {...state, id: 1}
-        case GET_HOME_DATA_FAILED:
-            return state
-        default:
-            return state
-    }
+import { message } from 'antd'
+import CONSTANTS from './constants'
+
+const initState = {
+    homeList: [],
 }
 
-export default todos
+export default handleActions({
+    [CONSTANTS.GET_HOME_DATA_SUCCESSED]: (perState, { payload }) => {
+        message.success('success!')
+        return ({ ...perState, homeList: payload })
+    },
+    [CONSTANTS.GET_HOME_DATA_FAILED]: perState => perState,
+}, initState)
