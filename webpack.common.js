@@ -8,6 +8,11 @@ module.exports = {
         vendor: [
             'lodash',
             'react',
+            'react-dom',
+            'react-redux',
+            'react-router-dom',
+            'redux',
+            'redux-saga',
         ],
     },
     plugins: [
@@ -55,11 +60,13 @@ module.exports = {
                 use: [
                     'file-loader',
                 ],
+                include: [path.join(__dirname, 'src')],
             }, {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
                     'file-loader',
                 ],
+                include: [path.join(__dirname, 'src')],
             }, {
                 test: /\.js$/,
                 include: [path.join(__dirname, 'src')],
