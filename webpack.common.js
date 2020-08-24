@@ -7,6 +7,7 @@ module.exports = {
         index: path.resolve(__dirname, 'src/index.js'),
         vendor: [
             'lodash',
+            'react',
         ],
     },
     plugins: [
