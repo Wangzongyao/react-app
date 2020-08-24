@@ -1,5 +1,5 @@
 const URLS = {
-    GET_HOME_DATA: 'http://localhost:8080/user/cardList.json',
+    GET_HOME_DATA: '/home/cardList.json',
 }
 
 export default URLS

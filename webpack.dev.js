@@ -4,6 +4,8 @@ const webpack = require('webpack')
 
 const common = require('./webpack.common.js')
 
+const PORT = 8080
+
 module.exports = merge(common, {
     devtool: 'inline-source-map',
     plugins: [
@@ -11,10 +13,8 @@ module.exports = merge(common, {
         new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
-        contentBase: [
-            path.join(__dirname, 'src'),
-            path.join(__dirname, 'mock'),
-        ],
+        port: PORT,
+        contentBase: [path.join(__dirname, 'mock')],
         hot: true,
         historyApiFallback: true,
     },
