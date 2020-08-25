@@ -17,5 +17,20 @@ module.exports = merge(common, {
         contentBase: [path.join(__dirname, 'mock')],
         hot: true,
         historyApiFallback: true,
+        proxy: {
+            '/api/*': {
+                target: `http://127.0.0.1:${PORT}`,
+                pathRewrite(paths, req) {
+                    console.info(`本地请求地址：${req.originalUrl}`)
+                    return `${paths.replace(/^\/api/, '')}.json`
+                },
+                changeOrigin: true,
+                onProxyReq(proxyReq) {
+                    // eslint-disable-next-line no-param-reassign
+                    proxyReq.method = 'GET'
+                    proxyReq.setHeader('Access-Control-Allow-Origin', true)
+                },
+            },
+        },
     },
 })
