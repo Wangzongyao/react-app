@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "baseUrl": ".",
+        "paths": {
+            "@commons/*": [
+                "./src/commons/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ]
+}
