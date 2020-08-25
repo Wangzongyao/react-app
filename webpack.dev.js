@@ -17,6 +17,7 @@ module.exports = merge(common, {
         contentBase: [path.join(__dirname, 'mock')],
         hot: true,
         historyApiFallback: true,
+        // https://github.com/chimurai/http-proxy-middleware
         proxy: {
             '/api/*': {
                 target: `http://127.0.0.1:${PORT}`,
