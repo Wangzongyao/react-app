@@ -3,13 +3,15 @@ import {
     BrowserRouter, Switch, Route, Redirect,
 } from 'react-router-dom'
 
+import Loading from '@commons/components/loading'
+
 const Home = lazy(() => import('./home/connect'))
 const Login = lazy(() => import('./login/index'))
 
 const Pages = memo(
     () => (
         <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading />}>
                 <Switch>
                     <Redirect exact from="/" to="/home" />
                     <Route path="/home" component={Home} />
