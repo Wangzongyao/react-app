@@ -1,22 +1,25 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
 module.exports = {
     entry: {
         index: path.resolve(__dirname, 'src/index.js'),
-        vendor: [
-            'lodash',
-            'react',
-            'react-dom',
-            'react-redux',
-            'react-router-dom',
-            'redux',
-            'redux-saga',
-        ],
     },
     plugins: [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            // eslint-disable-next-line global-require
+            manifest: require('./dist/vendors-manifest.json'),
+        }),
+        // https://www.npmjs.com/package/add-asset-html-webpack-plugin
+        new AddAssetHtmlPlugin({
+            filepath: path.resolve(__dirname, 'dist', '*.dll.js'),
+        }),
+        // https://www.npmjs.com/package/html-webpack-plugin
         new HtmlWebpackPlugin({
-            title: 'webpack-demo',
+            title: 'react-app',
             template: path.resolve(__dirname, 'src/index.html'),
         }),
     ],
@@ -31,11 +34,14 @@ module.exports = {
         splitChunks: {
             cacheGroups: {
                 commons: {
-                    name: 'vendor',
+                    name: 'vendors',
                     chunks: 'initial',
                     minChunks: 2,
                 },
             },
+        },
+        runtimeChunk: {
+            name: 'manifest',
         },
     },
     module: {
