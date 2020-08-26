@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: {
@@ -16,6 +17,9 @@ module.exports = {
         // https://www.npmjs.com/package/add-asset-html-webpack-plugin
         new AddAssetHtmlPlugin({
             filepath: path.resolve(__dirname, 'dist', '*.dll.js'),
+        }),
+        new MiniCssExtractPlugin({
+            chunkFilename: '[id].[chunkhash].css',
         }),
         // https://www.npmjs.com/package/html-webpack-plugin
         new HtmlWebpackPlugin({
@@ -49,13 +53,23 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    // 'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        // https://www.npmjs.com/package/mini-css-extract-plugin#esmodule
+                        options: { esModule: true },
+                    },
                     'css-loader',
                 ],
             }, {
                 test: /\.less$/,
                 use: [
-                    'style-loader',
+                    // 'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        // https://www.npmjs.com/package/mini-css-extract-plugin#esmodule
+                        options: { esModule: true },
+                    },
                     'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
                     'less-loader',
                 ],
