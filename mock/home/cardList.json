@@ -1,5 +1,5 @@
 {
-    "success": 1,
+    "flag": 0,
     "message": "ok",
     "data": [1, 2]
 }
