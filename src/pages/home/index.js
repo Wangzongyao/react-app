@@ -15,8 +15,8 @@ const Home = memo((props) => {
     return (
         <div className={styles['home-wrap']}>
             { homeList }
-            <NavLink to="/login" exact>
-                <Button> to login</Button>
+            <NavLink to="/user" exact>
+                <Button> to user</Button>
             </NavLink>
         </div>
     )

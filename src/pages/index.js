@@ -3,17 +3,21 @@ import {
     BrowserRouter, Switch, Route, Redirect,
 } from 'react-router-dom'
 
+import Loading from '@commons/components/loading'
+
+const NotFound = lazy(() => import('@commons/components/notFound'))
 const Home = lazy(() => import('./home/connect'))
-const Login = lazy(() => import('./login/index'))
+const User = lazy(() => import('./user/connect'))
 
 const Pages = memo(
     () => (
         <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading />}>
                 <Switch>
                     <Redirect exact from="/" to="/home" />
                     <Route path="/home" component={Home} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/user" component={User} />
+                    <Route component={NotFound} />
                 </Switch>
             </Suspense>
         </BrowserRouter>
