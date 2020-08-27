@@ -53,10 +53,8 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    // 'style-loader',
                     {
                         loader: MiniCssExtractPlugin.loader,
-                        // https://www.npmjs.com/package/mini-css-extract-plugin#esmodule
                         options: { esModule: true },
                     },
                     'css-loader',
@@ -64,10 +62,8 @@ module.exports = {
             }, {
                 test: /\.less$/,
                 use: [
-                    // 'style-loader',
                     {
                         loader: MiniCssExtractPlugin.loader,
-                        // https://www.npmjs.com/package/mini-css-extract-plugin#esmodule
                         options: { esModule: true },
                     },
                     'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
