@@ -5,8 +5,9 @@ import {
 
 import Loading from '@commons/components/loading'
 
+const NotFound = lazy(() => import('@commons/components/notFound'))
 const Home = lazy(() => import('./home/connect'))
-const Login = lazy(() => import('./login/index'))
+const User = lazy(() => import('./user/connect'))
 
 const Pages = memo(
     () => (
@@ -15,7 +16,8 @@ const Pages = memo(
                 <Switch>
                     <Redirect exact from="/" to="/home" />
                     <Route path="/home" component={Home} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/user" component={User} />
+                    <Route component={NotFound} />
                 </Switch>
             </Suspense>
         </BrowserRouter>
