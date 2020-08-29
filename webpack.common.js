@@ -33,7 +33,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
-    resolve: { alias: { '@commons': path.resolve(__dirname, 'src/commons/') } },
+    resolve: {
+        alias: {
+            '@commons': path.resolve(__dirname, 'src/commons/'),
+            '@resource': path.resolve(__dirname, 'src/resource/'),
+        },
+    },
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -71,7 +76,7 @@ module.exports = {
                 ],
                 include: [path.join(__dirname, 'src')],
             }, {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpe?g|gif)$/,
                 use: [
                     'file-loader',
                 ],
