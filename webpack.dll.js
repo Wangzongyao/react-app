@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const LIBRARY = '[name]_[hash]'
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: {
         vendors: ['react', 'react-dom', 'react-redux', 'redux', 'redux-saga', 'lodash'],
     },

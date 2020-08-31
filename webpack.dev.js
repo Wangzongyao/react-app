@@ -1,16 +1,21 @@
 const merge = require('webpack-merge')
 const path = require('path')
 const webpack = require('webpack')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const common = require('./webpack.common.js')
 
 const PORT = 8080
 
 module.exports = merge(common, {
+    mode: 'development',
     devtool: 'inline-source-map',
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new ReactRefreshWebpackPlugin({
+            forceEnable: true,
+        }),
     ],
     devServer: {
         port: PORT,
