@@ -18,7 +18,7 @@ const User = memo((props) => {
             <Card
                 className={styles['user-card']}
                 hoverable
-                cover={<img src={UserHerderImage || userAvatar} alt="userAvatar" />}
+                cover={<img src={userAvatar || UserHerderImage} alt="userAvatar" />}
             >
                 <Meta title={`userId: ${userId}`} description={`userName: ${userName}`} />
             </Card>
@@ -27,11 +27,7 @@ const User = memo((props) => {
 })
 
 User.propTypes = {
-    userData: PropTypes.objectOf({
-        userId: PropTypes.string,
-        userName: PropTypes.string,
-        userAvatar: PropTypes.string,
-    }),
+    userData: PropTypes.objectOf(PropTypes.string),
     featchUserData: PropTypes.func,
 }
 User.defaultProps = {
