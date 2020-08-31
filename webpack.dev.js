@@ -13,9 +13,7 @@ module.exports = merge(common, {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new ReactRefreshWebpackPlugin({
-            forceEnable: true,
-        }),
+        new ReactRefreshWebpackPlugin(),
     ],
     devServer: {
         port: PORT,

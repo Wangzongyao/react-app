@@ -4,11 +4,11 @@
     "description": "",
     "private": true,
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dll": "webpack --config webpack.dll.js",
+        "dll": "webpack --mode=development --config webpack.dll.js",
         "start": "webpack-dev-server --open --config webpack.dev.js",
-        "build": "webpack --config webpack.prod.js",
-        "analyzer": "webpack --config webpack.analyzer.js"
+        "analyzer": "webpack --config webpack.analyzer.js",
+        "prod:dll": "webpack --mode=production --config webpack.dll.js",
+        "prod:build": "webpack --config webpack.prod.js"
     },
     "repository": {
         "type": "git",
