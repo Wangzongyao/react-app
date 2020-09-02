@@ -51,21 +51,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                ],
-            }, {
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
-                    'less-loader',
-                ],
-                include: [path.join(__dirname, 'src')],
-            }, {
+             {
                 test: /\.(png|svg|jpe?g|gif)$/,
                 use: [
                     'file-loader',
