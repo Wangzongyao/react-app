@@ -24,7 +24,7 @@ module.exports = {
         }),
     ],
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
@@ -51,7 +51,7 @@ module.exports = {
     },
     module: {
         rules: [
-             {
+            {
                 test: /\.(png|svg|jpe?g|gif)$/,
                 use: [
                     'file-loader',

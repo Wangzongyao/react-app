@@ -11,7 +11,6 @@ const Home = memo((props) => {
 
     // 第一个参数不能使用异步函数
     useEffect(() => { featchHomeList() }, [])
-
     return (
         <div className={styles['home-wrap']}>
             {homeList}
