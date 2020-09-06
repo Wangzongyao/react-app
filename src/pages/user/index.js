@@ -1,8 +1,12 @@
+import { Card } from 'antd'
 import React, { memo, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { noop } from 'lodash'
 
+import UserHerderImage from '@resource/user/user-header.jpeg'
 import styles from './index.less'
+
+const { Meta } = Card
 
 const User = memo((props) => {
     const { userData: { userId, userName, userAvatar }, featchUserData } = props
@@ -10,26 +14,20 @@ const User = memo((props) => {
     useEffect(() => { featchUserData() }, [])
 
     return (
-        <div className={styles['home-wrap']}>
-            userId:
-            {' '}
-            { userId }
-            userName:
-            {' '}
-            { userName }
-            userAvatar:
-            {' '}
-            <img src={userAvatar} alt="userAvatar" />
+        <div className={styles['user-wrap']}>
+            <Card
+                className={styles['user-card']}
+                hoverable
+                cover={<img src={userAvatar || UserHerderImage} alt="userAvatar" />}
+            >
+                <Meta title={`userId: ${userId}`} description={`userName: ${userName}`} />
+            </Card>
         </div>
     )
 })
 
 User.propTypes = {
-    userData: PropTypes.objectOf({
-        userId: PropTypes.string,
-        userName: PropTypes.string,
-        userAvatar: PropTypes.string,
-    }),
+    userData: PropTypes.objectOf(PropTypes.string),
     featchUserData: PropTypes.func,
 }
 User.defaultProps = {

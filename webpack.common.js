@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: {
@@ -18,9 +17,6 @@ module.exports = {
         new AddAssetHtmlPlugin({
             filepath: path.resolve(__dirname, 'dist', '*.dll.js'),
         }),
-        new MiniCssExtractPlugin({
-            chunkFilename: '[id].[chunkhash].css',
-        }),
         // https://www.npmjs.com/package/html-webpack-plugin
         new HtmlWebpackPlugin({
             title: 'react-app',
@@ -28,12 +24,17 @@ module.exports = {
         }),
     ],
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
-    resolve: { alias: { '@commons': path.resolve(__dirname, 'src/commons/') } },
+    resolve: {
+        alias: {
+            '@commons': path.resolve(__dirname, 'src/commons/'),
+            '@resource': path.resolve(__dirname, 'src/resource/'),
+        },
+    },
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -51,27 +52,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: { esModule: true },
-                    },
-                    'css-loader',
-                ],
-            }, {
-                test: /\.less$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: { esModule: true },
-                    },
-                    'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
-                    'less-loader',
-                ],
-                include: [path.join(__dirname, 'src')],
-            }, {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpe?g|gif)$/,
                 use: [
                     'file-loader',
                 ],
