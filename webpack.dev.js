@@ -7,6 +7,9 @@ const common = require('./webpack.common.js')
 
 const PORT = 8080
 
+const TARGET_SERVER = 'http://127.0.0.1:8000' // 本地联调后端服务
+// const TARGET_SERVER = 'http://127.0.0.1:8080'  // 本地mock数据服务
+
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
@@ -22,16 +25,15 @@ module.exports = merge(common, {
         // https://github.com/chimurai/http-proxy-middleware
         proxy: {
             '/api/*': {
-                target: `http://127.0.0.1:${PORT}`,
-                pathRewrite(paths, req) {
+                target: TARGET_SERVER,
+                pathRewrite(paths) {
+                    const newPaths = `${paths.replace(/^\/api/, '')}`
                     // eslint-disable-next-line no-console
-                    console.info(`本地请求地址：${req.originalUrl}`)
-                    return `${paths.replace(/^\/api/, '')}.json`
+                    console.info(`本地请求地址：${TARGET_SERVER}${newPaths}`)
+                    return newPaths
                 },
                 changeOrigin: true,
                 onProxyReq(proxyReq) {
-                    // eslint-disable-next-line no-param-reassign
-                    proxyReq.method = 'GET'
                     proxyReq.setHeader('Access-Control-Allow-Origin', true)
                 },
             },
