@@ -4,11 +4,11 @@
     "description": "",
     "private": true,
     "scripts": {
-        "dll": "cross-env webpack --mode=development --config webpack.dll.js",
-        "start": "cross-env NODE_ENV=development webpack-dev-server --open --config webpack.dev.js",
-        "analyzer": "cross-env webpack --config webpack.analyzer.js",
-        "prod:dll": "cross-env webpack --mode=production --config webpack.dll.js",
-        "prod:build": "cross-env webpack --config webpack.prod.js"
+        "dll": "webpack --mode=development --config webpack.dll.js",
+        "start": "NODE_ENV=development webpack-dev-server --open --config webpack.dev.js",
+        "analyzer": "webpack --config webpack.analyzer.js",
+        "prod:dll": "./node_modules/.bin/webpack --mode=production --config webpack.dll.js",
+        "prod:build": "NODE_ENV=production ./node_modules/.bin/webpack --config webpack.prod.js"
     },
     "repository": {
         "type": "git",
@@ -34,7 +34,6 @@
         "babel-loader": "8.0.6",
         "babel-plugin-import": "^1.12.0",
         "clean-webpack-plugin": "^3.0.0",
-        "cross-env": "^7.0.2",
         "css-loader": "^2.1.1",
         "eslint": "^5.16.0",
         "eslint-config-airbnb": "^17.1.1",
