@@ -1,8 +1,8 @@
 import { message } from 'antd'
 import { put, call, takeEvery } from 'redux-saga/effects'
 
-import { fetchJson } from '@commons/fetch'
-import URLS from '@commons/URLS'
+import { fetchJson } from '@commons/utils/fetch'
+import URLS from '@commons/urls'
 import CONSTANTS from './constants'
 
 export function* featchHomeList(action) {

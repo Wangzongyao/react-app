@@ -7,8 +7,8 @@ const common = require('./webpack.common.js')
 
 const PORT = 8080
 
-const TARGET_SERVER = 'http://127.0.0.1:8000' // 本地联调后端服务
-// const TARGET_SERVER = 'http://127.0.0.1:8080'  // 本地mock数据服务
+// const TARGET_SERVER = 'http://127.0.0.1:8000' // 本地联调后端服务
+const TARGET_SERVER = 'http://127.0.0.1:8080' // 本地mock数据服务
 
 module.exports = merge(common, {
     mode: 'development',
@@ -30,7 +30,7 @@ module.exports = merge(common, {
                     const newPaths = `${paths.replace(/^\/api/, '')}`
                     // eslint-disable-next-line no-console
                     console.info(`本地请求地址：${TARGET_SERVER}${newPaths}`)
-                    return newPaths
+                    return `${newPaths}.json`
                 },
                 changeOrigin: true,
                 onProxyReq(proxyReq) {

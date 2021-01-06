@@ -1,4 +1,4 @@
-import { isString } from 'lodash'
+import { isFunction, noop } from 'lodash'
 
 // 默认配置HTTP返回格式
 const DEFAULT_RESPONSE_CONSTRUCTOR = {
@@ -12,30 +12,43 @@ class HttpFetchJson {
     constructor() {
         // 兜底赋值，防止未执行initFetch函数
         this.responseConstructor = DEFAULT_RESPONSE_CONSTRUCTOR
+        this.interceptor = noop
     }
 
-    initFetch = (responseConstructor) => {
+    initFetch = ({ responseConstructor = DEFAULT_RESPONSE_CONSTRUCTOR, interceptor = noop }) => {
         const {
-            success = DEFAULT_RESPONSE_CONSTRUCTOR.message,
+            success = DEFAULT_RESPONSE_CONSTRUCTOR.success,
             message = DEFAULT_RESPONSE_CONSTRUCTOR.message,
             data = DEFAULT_RESPONSE_CONSTRUCTOR.data,
         } = responseConstructor
 
-        if (isString(success) && isString(message) && isString(data)) {
-            this.responseConstructor = {
-                ...this.responseConstructor,
-                success,
-                message,
-                data,
-            }
-            return
+
+        if (!Object.keys(responseConstructor).every(String)) {
+            throw new Error('All of initFetch options must be Sting!')
         }
-        throw new Error('All of initFetch options must be Sting!')
+        if (!isFunction(interceptor)) {
+            throw new Error('interceptor options must be Function!')
+        }
+
+        this.responseConstructor = {
+            ...this.responseConstructor,
+            success,
+            message,
+            data,
+        }
+
+        this.interceptor = interceptor
     }
 
     fetchJson = (url, params = {}) => {
         const { success, message, data } = this.responseConstructor
         return fetch(url, params)
+            .then(
+                (response) => {
+                    this.interceptor(response)
+                    return response
+                },
+            )
             .then(
                 (response) => {
                     if (response.status === 200) {
