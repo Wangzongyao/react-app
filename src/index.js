@@ -21,8 +21,7 @@ initFetch({
     interceptor: (response) => {
         if (response.status === 401) {
             rmLocal(TOKEN_KEY)
-            const redirect = encodeURIComponent(window.location.href)
-            window.location.replace(`/login?redirect=${redirect}`)
+            window.history.pushState(null, undefined, '/login')
             throw new Error('暂未授权，请重新登录！')
         }
     },

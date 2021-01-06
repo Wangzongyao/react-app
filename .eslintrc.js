@@ -18,7 +18,8 @@ module.exports = {
         "localStorage": true,
         "window": true,
         "document": true,
-        "fetch": true
+        "fetch": true,
+        "history": true
     },
     // https://www.npmjs.com/package/@babel/eslint-parser
     "parser": "@babel/eslint-parser",
